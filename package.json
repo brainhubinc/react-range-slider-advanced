@@ -1,6 +1,6 @@
 {
   "name": "react-range-slider-advanced",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "An advanced range slider component for React",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -36,7 +36,7 @@
     "component",
     "ui"
   ],
-  "author": "brainhubinc",
+  "author": "Kostya Skakodub",
   "license": "MIT",
   "repository": {
     "type": "git",

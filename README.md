@@ -4,18 +4,18 @@
 ![license](https://img.shields.io/npm/l/react-range-slider-advanced)
 ![downloads](https://img.shields.io/npm/dm/react-range-slider-advanced)
 
-Современный, настраиваемый и интерактивный компонент Range Slider для React-приложений с поддержкой мульти-диапазонов, сетки значений и адаптивным интерфейсом.
+A modern, customizable, and interactive Range Slider component for React applications with support for multi-range selection, value grids, and adaptive UI.
 
-## 🌟 Особенности
+## 🌟 Features
 
-- Полностью настраиваемый внешний вид
-- Поддержка touch-устройств
-- Адаптивные подписи значений
-- Настраиваемая сетка значений
-- Плавная анимация перетаскивания
-- Мобильная оптимизация
+- Fully customizable appearance
+- Touch device support
+- Adaptive value labels
+- Customizable value grid
+- Smooth drag animation
+- Mobile-optimized
 
-## 📦 Установка
+## 📦 Installation
 
 ```bash
 npm install react-range-slider-advanced
@@ -23,7 +23,7 @@ npm install react-range-slider-advanced
 yarn add react-range-slider-advanced
 ```
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start
 ```jsx
 import React from 'react';
 import RangeSlider from 'react-range-slider-advanced';
@@ -49,14 +49,15 @@ function App() {
 export default App;
 ```
 
-## ⚙️ Параметры
+## ⚙️ Props
+
 |   Параметр  |    Тип    | По умолчанию |           Описание               |
 |-------------|-----------|--------------|----------------------------------|
-| `min`       | `number`  | `0`          | Минимальное значение             |
-| `max`       | `number`  | `100`        | Максимальное значение            |
-| `fromPr`    | `number`  | `10`         | Начальное значение "от"          |
-| `toPr`      | `number`  | `90`         | Начальное значение "до"          |
-| `step`      | `number`  | `10`         | Шаг изменения значений           |
-| `grid_num`  | `number`  | `10`         | Количество основных делений      |
-| `small_max` | `number`  | `2`          | Количество промежуточных делений |
-| `onFinish`  | `function`| `console.log`| Колбек при изменении диапазона   |
+| `min`       | `number`  | `0`          | Minimum value                    |
+| `max`       | `number`  | `100`        | Maximum value                    |
+| `fromPr`    | `number`  | `10`         | Initial "from" value             |
+| `toPr`      | `number`  | `90`         | Initial "to" value               |
+| `step`      | `number`  | `10`         | Value change step                |
+| `grid_num`  | `number`  | `10`         | Number of main grid divisions    |
+| `small_max` | `number`  | `2`          | Number of intermediate divisions |
+| `onFinish`  | `function`| `console.log`| Callback when range is changed   |
