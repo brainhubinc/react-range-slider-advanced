@@ -51,7 +51,7 @@ export default App;
 
 ## ⚙️ Props
 
-|   Props     |    Type   |    Default   |          Description             |
+|  Argument   |    Type   |    Default   |          Description             |
 |-------------|-----------|--------------|----------------------------------|
 | `min`       | `number`  | `0`          | Minimum value                    |
 | `max`       | `number`  | `100`        | Maximum value                    |
