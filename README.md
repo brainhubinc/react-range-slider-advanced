@@ -19,7 +19,7 @@ A modern, customizable, and interactive Range Slider component for React applica
 
 ```bash
 npm install react-range-slider-advanced
-# или
+# or
 yarn add react-range-slider-advanced
 ```
 
