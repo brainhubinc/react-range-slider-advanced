@@ -51,7 +51,7 @@ export default App;
 
 ## ⚙️ Props
 
-|   Параметр  |    Тип    | По умолчанию |           Описание               |
+|   Props     |    Type   |    Default   |          Description             |
 |-------------|-----------|--------------|----------------------------------|
 | `min`       | `number`  | `0`          | Minimum value                    |
 | `max`       | `number`  | `100`        | Maximum value                    |
