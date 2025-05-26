@@ -36,14 +36,14 @@
     "component",
     "ui"
   ],
-  "author": "Kostya Skakodub",
+  "author": "brainhubinc",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/react-range-slider.git"
+    "url": "git+https://github.com/brainhubinc/react-range-slider-advanced.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/react-range-slider/issues"
+    "url": "https://github.com/brainhubinc/react-range-slider-advanced/issues"
   },
-  "homepage": "https://github.com/yourusername/react-range-slider#readme"
+  "homepage": "https://github.com/brainhubinc/react-range-slider-advanced#readme"
 }
