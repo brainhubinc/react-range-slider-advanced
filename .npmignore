@@ -16,8 +16,5 @@ yarn.lock
 src
 test
 example
-.travis.yml
-.babelrc
 .gitignore
-dist
 .cache

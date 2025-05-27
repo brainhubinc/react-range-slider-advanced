@@ -4,15 +4,16 @@ import './index.css';
 const RangeSlider = ({
   min = 0,
   max =  100,
-  fromPr = 10,
-  toPr = 90,
+  from = 10,
+  to = 90,
   step = 10,
-  grid_num = 10,
-  small_max = 2,
+  numberOfSections = 10,
+  numberOfSmallSections = 2,
   onFinish=({from, to}) => console.log(from, to),
 }) => {
-  const [fromValue, setFromValue] = React.useState(Number(fromPr))
-  const [toValue, setToValue] = React.useState(Number(toPr))
+
+  const [fromValue, setFromValue] = React.useState(Number(from))
+  const [toValue, setToValue] = React.useState(Number(to))
   const [showSingleValue, setShowSingleValue] = React.useState(false)
   const [showDefaultFromValue, setShowDefaultFromValue] = React.useState(false)
   const [showDefaultToValue, setShowDefaultToValue] = React.useState(false)
@@ -211,11 +212,11 @@ const RangeSlider = ({
   }, [handleMove, handleEnd])
 
   React.useEffect(() => {
-    if (fromPr <= toPr) {
-      setFromValue(Number(fromPr))
-      setToValue(Number(toPr))
+    if (from <= to) {
+      setFromValue(Number(from))
+      setToValue(Number(to))
     }
-  }, [fromPr, toPr])
+  }, [from, to])
 
   React.useEffect(() => {
     updateSliderValues()
@@ -223,9 +224,23 @@ const RangeSlider = ({
 
   const getGridItems = React.useCallback(() => {
     const items = []
-    const stepPercent = 100 / grid_num
-
-    for (let i = 0; i <= grid_num; i++) {
+    const stepPercent = 100 / numberOfSections
+    const numberOfSmallSections = (()=>{
+       if(numberOfSections > 28){
+        return 0;
+      } 
+      if(numberOfSections > 14){
+        return 1;
+      }
+      if(numberOfSections > 7){
+        return 2;
+      }
+      if(numberOfSections > 4){
+        return 3;
+      }
+      return 4;
+    })();
+    for (let i = 0; i <= numberOfSections; i++) {
       const elements = []
       const bigPercent = i * stepPercent
 
@@ -237,9 +252,9 @@ const RangeSlider = ({
         />
       )
 
-      if (i < grid_num && small_max > 0) {
-        const smallStepPercent = stepPercent / (small_max + 1)
-        for (let j = 1; j <= small_max; j++) {
+      if (i < numberOfSections && numberOfSmallSections > 0) {
+        const smallStepPercent = stepPercent / (numberOfSmallSections + 1)
+        for (let j = 1; j <= numberOfSmallSections; j++) {
           const smallPercent = bigPercent + j * smallStepPercent
           if (smallPercent >= 100) break
 
@@ -272,7 +287,7 @@ const RangeSlider = ({
     }
 
     return items
-  }, [grid_num, small_max, convertToValue, prettify])
+  }, [numberOfSections, convertToValue, prettify])
 
   return (
     <div className="range-slider-container">
