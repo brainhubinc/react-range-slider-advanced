@@ -51,6 +51,17 @@ export default App;
 
 ## ⚙️ Props
 
+### SimpleRangeSlider 🎚️
+|      Argument      |    Type   |  Default     |           Description            |
+|--------------------|-----------|--------------|----------------------------------|
+| `min`              | `number`  | `0`          | Minimum value                    |
+| `max`              | `number`  | `100`        | Maximum value                    |
+| `value`            | `number`  | `10`         | Initial value                    |
+| `step`             | `number`  | `10`         | Value change step                |
+| `numberOfSections` | `number`  | `10`         | Number of main grid divisions    |
+| `onFinish`         | `function`| `console.log`| Callback when range is changed   |
+
+### DoubleRangeSlider 🎚️🎚️
 |      Argument      |    Type   |  Default     |           Description            |
 |--------------------|-----------|--------------|----------------------------------|
 | `min`              | `number`  | `0`          | Minimum value                    |

@@ -1,2 +1,4 @@
-import RangeSlider from './RangeSlider'
-export default RangeSlider
+import DoubleRangeSlider from './DoubleRangeSlider'
+import SimpleRangeSlider from './SimpleRangeSlider'
+import './index.css'
+export  {DoubleRangeSlider, SimpleRangeSlider}
