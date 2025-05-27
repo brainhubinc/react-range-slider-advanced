@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
@@ -14,5 +15,11 @@ export default defineConfig({
         '.js': 'jsx',
       },
     },
+  },
+  resolve: {
+    alias: {
+      "react-range-slider-advanced/style.css": path.resolve("../dist/style.css"),
+      "react-range-slider-advanced": path.resolve(".."),
+    }
   }
 })
