@@ -19,7 +19,7 @@ A modern, customizable, and interactive Range Slider component for React applica
 
 ```bash
 npm install react-range-slider-advanced
-# или
+# or
 yarn add react-range-slider-advanced
 ```
 
@@ -51,13 +51,12 @@ export default App;
 
 ## ⚙️ Props
 
-|   Параметр  |    Тип    | По умолчанию |           Описание               |
-|-------------|-----------|--------------|----------------------------------|
-| `min`       | `number`  | `0`          | Minimum value                    |
-| `max`       | `number`  | `100`        | Maximum value                    |
-| `fromPr`    | `number`  | `10`         | Initial "from" value             |
-| `toPr`      | `number`  | `90`         | Initial "to" value               |
-| `step`      | `number`  | `10`         | Value change step                |
-| `grid_num`  | `number`  | `10`         | Number of main grid divisions    |
-| `small_max` | `number`  | `2`          | Number of intermediate divisions |
-| `onFinish`  | `function`| `console.log`| Callback when range is changed   |
+|      Argument      |    Type   |  Default     |           Description            |
+|--------------------|-----------|--------------|----------------------------------|
+| `min`              | `number`  | `0`          | Minimum value                    |
+| `max`              | `number`  | `100`        | Maximum value                    |
+| `from`             | `number`  | `10`         | Initial "from" value             |
+| `to`               | `number`  | `90`         | Initial "to" value               |
+| `step`             | `number`  | `10`         | Value change step                |
+| `numberOfSections` | `number`  | `10`         | Number of main grid divisions    |
+| `onFinish`         | `function`| `console.log`| Callback when range is changed   |
