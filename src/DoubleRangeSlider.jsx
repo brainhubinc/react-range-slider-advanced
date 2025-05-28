@@ -6,6 +6,7 @@ import {
   getGridItems,
   prettify,
   updateElement,
+  Slider,
 } from "./common";
 
 const DoubleRangeSlider = ({
@@ -241,17 +242,17 @@ const DoubleRangeSlider = ({
         <span className="irs-bar" ref={barRef} />
         <span className="irs-shadow shadow-from" />
         <span className="irs-shadow shadow-to" />
-        <span
-          className={`irs-slider from ${fromValue === min ? "type_last" : ""}`}
-          ref={sliderFromRef}
-          onMouseDown={handleStart("from")}
-          onTouchStart={handleStart("from")}
+
+        <Slider
+          sliderRef={sliderFromRef}
+          handle={handleStart("from")}
+          classNames={"from"}
         />
-        <span
-          className={`irs-slider to ${toValue === max ? "type_last" : ""}`}
-          ref={sliderToRef}
-          onMouseDown={handleStart("to")}
-          onTouchStart={handleStart("to")}
+
+        <Slider
+          sliderRef={sliderToRef}
+          handle={handleStart("to")}
+          classNames={"to"}
         />
       </span>
       <input

@@ -5,6 +5,7 @@ import {
   convertToValue,
   getGridItems,
   prettify,
+  Slider,
   updateElement,
 } from "./common";
 
@@ -180,12 +181,7 @@ const SimpleRangeSlider = ({
         <span className="irs-bar" ref={barRef} />
         <span className="irs-shadow shadow-from" />
         <span className="irs-shadow shadow-to" />
-        <span
-          className="irs-slider to"
-          ref={sliderRef}
-          onMouseDown={handleStart}
-          onTouchStart={handleStart}
-        />
+        <Slider sliderRef={sliderRef} handle={handleStart} classNames={"to"} />
       </span>
       <input
         type="text"

@@ -95,3 +95,22 @@ export const getGridItems = (numberOfSections, min, max, step) => {
 
   return items;
 };
+export const Slider = ({ sliderRef, handle, classNames }) => {
+  return (
+    <div className={classNames}>
+      <div
+        ref={sliderRef}
+        className="slider-container"
+        onMouseDown={handle}
+        onTouchStart={handle}
+      >
+        <span className="slider-pointer" />
+        <span className="slider-handle" />
+        <div className="slider-lines-container">
+          <span className="slider-left-line" />
+          <span className="slider-right-line" />
+        </div>
+      </div>
+    </div>
+  );
+};
