@@ -15,6 +15,9 @@ const SimpleRangeSlider = ({
   value = 10,
   step = 10,
   numberOfSections = 10,
+  separator = " ",
+  prefix = "",
+  postfix = "",
   onFinish = (currentValue) => console.log(currentValue),
 }) => {
   const [currentValue, setCurrentValue] = React.useState(Number(value));
@@ -32,7 +35,7 @@ const SimpleRangeSlider = ({
   const startXRef = React.useRef(0);
   const startLeftRef = React.useRef(0);
 
-  const prettifyCall = React.useCallback((num) => prettify(num), []);
+  const prettifyCall = React.useCallback((num) => prettify(num, separator), []);
 
   const convertToPercentCall = React.useCallback(
     (value) => convertToPercent(value, min, max),
@@ -52,8 +55,8 @@ const SimpleRangeSlider = ({
   const updateSliderValues = React.useCallback(() => {
     const currentPercent = convertToPercentCall(currentValue);
 
-    updateElement(sliderRef, null, currentPercent);
-    updateElement(valueRef, currentValue, currentPercent);
+    updateElement(sliderRef, null, currentPercent, separator, prefix, postfix);
+    updateElement(valueRef, currentValue, currentPercent, separator, prefix, postfix);
 
     if (barRef.current) {
       barRef.current.style.left = "0%";
@@ -148,7 +151,7 @@ const SimpleRangeSlider = ({
   }, [currentValue, updateSliderValues]);
 
   const getGridItemsCall = React.useCallback(
-    () => getGridItems(numberOfSections, min, max, step),
+    () => getGridItems(numberOfSections, min, max, step, separator),
     [numberOfSections, convertToValueCall, prettifyCall]
   );
 
@@ -166,14 +169,14 @@ const SimpleRangeSlider = ({
             ref={fromDefaultRef}
             style={{ visibility: showDefaultFromValue ? "hidden" : "visible" }}
           >
-            {`Р ${min}`}
+            {`${prefix} ${prettifyCall(min) + postfix}`}
           </span>
           <span
             className="irs-max"
             ref={toDefaultRef}
             style={{ visibility: showDefaultToValue ? "hidden" : "visible" }}
           >
-            {`Р ${prettifyCall(max)}`}
+            {`${prefix} ${prettifyCall(max) + postfix}`}
           </span>
           <span className="irs-to" ref={valueRef} />
         </span>

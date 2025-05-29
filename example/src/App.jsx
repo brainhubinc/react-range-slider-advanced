@@ -17,6 +17,10 @@ function App() {
         to={max}
         step={10}
         numberOfSections={10}
+        separator=","
+        prefix="P"
+        valuesSeparator="~"
+        postfix="k"
         onFinish={({ from, to }) => console.log("Selected range:", from, to)}
       />
       <SimpleRangeSlider
@@ -25,6 +29,8 @@ function App() {
         value={min}
         step={10}
         numberOfSections={10}
+        separator=" "
+        postfix="$"
         onFinish={(val) => console.log("Selected range:", val)}
       />
     </div>

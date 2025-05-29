@@ -1,7 +1,7 @@
 import React from "react";
-export const prettify = (num) => {
+export const prettify = (num, separator) => {
   if (num === null || num === undefined) return "";
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 };
 export const convertToPercent = (value, min, max) =>
   ((value - min) / (max - min)) * 100;
@@ -16,12 +16,22 @@ export const checkOverlap = (elem1, elem2) => {
   const rect2 = elem2.getBoundingClientRect();
   return !(rect1.right < rect2.left || rect1.left > rect2.right);
 };
-export const updateElement = (ref, value, left, isVisible = true) => {
+export const updateElement = (
+  ref,
+  value,
+  left,
+  separator,
+  prefix,
+  postfix,
+  isVisible = true,
+) => {
   if (ref.current) {
     ref.current.style.left = `${left}%`;
     ref.current.style.transform = "translateX(-50%)";
     if (value !== null) {
-      ref.current.textContent = `Р ${prettify(value)}`;
+      ref.current.textContent = `${prefix} ${
+        prettify(value, separator) + postfix
+      }`;
     }
     if (isVisible !== undefined) {
       ref.current.style.visibility = isVisible ? "visible" : "hidden";
@@ -29,7 +39,13 @@ export const updateElement = (ref, value, left, isVisible = true) => {
   }
 };
 
-export const getGridItems = (numberOfSections, min, max, step) => {
+export const getGridItems = (
+  numberOfSections,
+  min,
+  max,
+  step,
+  separator
+) => {
   const items = [];
   const stepPercent = 100 / numberOfSections;
   const numberOfSmallSections = (() => {
@@ -83,7 +99,7 @@ export const getGridItems = (numberOfSections, min, max, step) => {
           className={`irs-grid-text js-grid-text-${i}`}
           style={{ left: `${bigPercent}%`, transform: "translateX(-50%)" }}
         >
-          {prettify(value)}
+          {prettify(value, separator)}
         </span>
       );
     }

@@ -16,6 +16,10 @@ const DoubleRangeSlider = ({
   to = 90,
   step = 10,
   numberOfSections = 10,
+  separator = " ",
+  valuesSeparator = "—",
+  prefix = "",
+  postfix = "",
   onFinish = ({ from, to }) => console.log(from, to),
 }) => {
   const [fromValue, setFromValue] = React.useState(Number(from));
@@ -38,7 +42,7 @@ const DoubleRangeSlider = ({
   const startXRef = React.useRef(0);
   const startLeftRef = React.useRef(0);
 
-  const prettifyCall = React.useCallback((num) => prettify(num), []);
+  const prettifyCall = React.useCallback((num) => prettify(num, separator), []);
 
   const convertToPercentCall = React.useCallback(
     (value) => convertToPercent(value, min, max),
@@ -60,10 +64,10 @@ const DoubleRangeSlider = ({
     const toPercent = convertToPercentCall(toValue);
     const centerPercent = (fromPercent + toPercent) / 2;
 
-    updateElement(sliderFromRef, null, fromPercent);
-    updateElement(sliderToRef, null, toPercent);
-    updateElement(fromValueRef, fromValue, fromPercent, !showSingleValue);
-    updateElement(toValueRef, toValue, toPercent, !showSingleValue);
+    updateElement(sliderFromRef, null, fromPercent, separator, prefix, postfix);
+    updateElement(sliderToRef, null, toPercent, separator, prefix, postfix);
+    updateElement(fromValueRef, fromValue, fromPercent, separator, prefix, postfix, !showSingleValue);
+    updateElement(toValueRef, toValue, toPercent, separator, prefix, postfix, !showSingleValue);
 
     if (barRef.current) {
       barRef.current.style.left = `${fromPercent}%`;
@@ -75,8 +79,10 @@ const DoubleRangeSlider = ({
       singleValueRef.current.style.transform = "translateX(-50%)";
       singleValueRef.current.textContent =
         fromValue === toValue
-          ? `Р ${prettifyCall(toValue)}`
-          : `Р ${prettifyCall(fromValue)} — Р ${prettifyCall(toValue)}`;
+          ? `${prefix} ${prettifyCall(toValue) + postfix}`
+          : `${prefix} ${
+              prettifyCall(fromValue) + postfix
+            } ${valuesSeparator} ${prefix} ${prettifyCall(toValue) + postfix}`;
       singleValueRef.current.style.visibility = showSingleValue
         ? "visible"
         : "hidden";
@@ -207,7 +213,7 @@ const DoubleRangeSlider = ({
   }, [fromValue, toValue, updateSliderValues]);
 
   const getGridItemsMemo = React.useCallback(
-    () => getGridItems(numberOfSections, min, max, step),
+    () => getGridItems(numberOfSections, min, max, step, separator),
     [numberOfSections, convertToValueCall, prettifyCall]
   );
 
@@ -225,14 +231,14 @@ const DoubleRangeSlider = ({
             ref={fromDefaultRef}
             style={{ visibility: showDefaultFromValue ? "hidden" : "visible" }}
           >
-            {`Р ${min}`}
+            {`${prefix} ${prettifyCall(min) + postfix}`}
           </span>
           <span
             className="irs-max"
             ref={toDefaultRef}
             style={{ visibility: showDefaultToValue ? "hidden" : "visible" }}
           >
-            {`Р ${prettifyCall(max)}`}
+            {`${prefix} ${prettifyCall(max) + postfix}`}
           </span>
           <span className="irs-from" ref={fromValueRef} />
           <span className="irs-to" ref={toValueRef} />
