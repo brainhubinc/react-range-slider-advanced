@@ -18,7 +18,7 @@ function App() {
         step={10}
         numberOfSections={10}
         separator=","
-        prefix="P"
+        prefix="P "
         valuesSeparator="~"
         postfix="k"
         onFinish={({ from, to }) => console.log("Selected range:", from, to)}

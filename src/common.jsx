@@ -29,9 +29,7 @@ export const updateElement = (
     ref.current.style.left = `${left}%`;
     ref.current.style.transform = "translateX(-50%)";
     if (value !== null) {
-      ref.current.textContent = `${prefix} ${
-        prettify(value, separator) + postfix
-      }`;
+      ref.current.textContent = prefix + prettify(value, separator) + postfix;
     }
     if (isVisible !== undefined) {
       ref.current.style.visibility = isVisible ? "visible" : "hidden";

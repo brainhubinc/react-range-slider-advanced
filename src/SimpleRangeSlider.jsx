@@ -56,7 +56,14 @@ const SimpleRangeSlider = ({
     const currentPercent = convertToPercentCall(currentValue);
 
     updateElement(sliderRef, null, currentPercent, separator, prefix, postfix);
-    updateElement(valueRef, currentValue, currentPercent, separator, prefix, postfix);
+    updateElement(
+      valueRef,
+      currentValue,
+      currentPercent,
+      separator,
+      prefix,
+      postfix
+    );
 
     if (barRef.current) {
       barRef.current.style.left = "0%";
@@ -169,14 +176,14 @@ const SimpleRangeSlider = ({
             ref={fromDefaultRef}
             style={{ visibility: showDefaultFromValue ? "hidden" : "visible" }}
           >
-            {`${prefix} ${prettifyCall(min) + postfix}`}
+            {prefix + prettifyCall(min) + postfix}
           </span>
           <span
             className="irs-max"
             ref={toDefaultRef}
             style={{ visibility: showDefaultToValue ? "hidden" : "visible" }}
           >
-            {`${prefix} ${prettifyCall(max) + postfix}`}
+            {prefix + prettifyCall(max) + postfix}
           </span>
           <span className="irs-to" ref={valueRef} />
         </span>

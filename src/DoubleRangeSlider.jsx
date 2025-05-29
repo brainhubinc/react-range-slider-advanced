@@ -79,10 +79,10 @@ const DoubleRangeSlider = ({
       singleValueRef.current.style.transform = "translateX(-50%)";
       singleValueRef.current.textContent =
         fromValue === toValue
-          ? `${prefix} ${prettifyCall(toValue) + postfix}`
-          : `${prefix} ${
+          ? prefix + prettifyCall(toValue) + postfix
+          : `${prefix + 
               prettifyCall(fromValue) + postfix
-            } ${valuesSeparator} ${prefix} ${prettifyCall(toValue) + postfix}`;
+            } ${valuesSeparator} ${prefix + prettifyCall(toValue) + postfix}`;
       singleValueRef.current.style.visibility = showSingleValue
         ? "visible"
         : "hidden";
@@ -231,14 +231,14 @@ const DoubleRangeSlider = ({
             ref={fromDefaultRef}
             style={{ visibility: showDefaultFromValue ? "hidden" : "visible" }}
           >
-            {`${prefix} ${prettifyCall(min) + postfix}`}
+            {prefix + prettifyCall(min) + postfix}
           </span>
           <span
             className="irs-max"
             ref={toDefaultRef}
             style={{ visibility: showDefaultToValue ? "hidden" : "visible" }}
           >
-            {`${prefix} ${prettifyCall(max) + postfix}`}
+            {prefix+prettifyCall(max) + postfix}
           </span>
           <span className="irs-from" ref={fromValueRef} />
           <span className="irs-to" ref={toValueRef} />
