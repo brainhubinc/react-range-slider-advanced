@@ -1,22 +1,27 @@
 {
   "name": "react-range-slider-advanced",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An advanced range slider component for React",
   "main": "dist/index.umd.js",
+  "types": "./types/index.d.ts",
   "module": "dist/index.es.js",
-  "style": "dist/style.css",
-  "files": ["dist"],
+  "style": "style.css",
+  "files": [
+    "dist",
+    "types",
+    "style.css"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./style.css"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "prepublishOnly": "npm run build",
+    "build": "tsc && vite build",
+    "prepublishOnly": "tsc && npm run build",
     "example": "cd example && npm run dev"
   },
   "peerDependencies": {
@@ -24,10 +29,13 @@
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^4.4.9",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "typescript": "^5.8.3",
+    "vite": "^4.4.9"
   },
   "keywords": [
     "react",

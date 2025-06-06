@@ -14,5 +14,13 @@ export default defineConfig({
         '.js': 'jsx',
       },
     },
+<<<<<<< Updated upstream
+=======
+  },
+  resolve: {
+    alias: {
+      "react-range-slider-advanced": path.resolve(".."),
+    }
+>>>>>>> Stashed changes
   }
 })
