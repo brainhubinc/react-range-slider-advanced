@@ -45,6 +45,10 @@ function App() {
         to={max}
         step={10}
         numberOfSections={10}
+        separator=","
+        prefix="P"
+        postfix="k"
+        valuesSeparator='-'
         onFinish={({ from, to }) => console.log("Selected range:", from, to)}
       />
       <SimpleRangeSlider
@@ -53,6 +57,8 @@ function App() {
         value={min}
         step={10}
         numberOfSections={10}
+        separator=" "
+        postfix="$"
         onFinish={(val) => console.log("Selected range:", val)}
       />
     </div>
@@ -72,6 +78,9 @@ export default App;
 | `value`            | `number`  | `10`         | Initial value                    |
 | `step`             | `number`  | `10`         | Value change step                |
 | `numberOfSections` | `number`  | `10`         | Number of main grid divisions    |
+| `separator`        | `string`  | ` `          | Numbers separator                |
+| `prefix`           | `string`  | ``           | Symbol before value              |
+| `postfix`          | `string`  | ``           | Symbol after value               |
 | `onFinish`         | `function`| `console.log`| Callback when range is changed   |
 
 ### DoubleRangeSlider 🎚️🎚️
@@ -83,4 +92,8 @@ export default App;
 | `to`               | `number`  | `90`         | Initial "to" value               |
 | `step`             | `number`  | `10`         | Value change step                |
 | `numberOfSections` | `number`  | `10`         | Number of main grid divisions    |
+| `separator`        | `string`  | ` `          | Numbers separator                |
+| `valuesSeparator`  | `string`  | `-`          | Separator between values         |
+| `prefix`           | `string`  | ``           | Symbol before value              |
+| `postfix`          | `string`  | ``           | Symbol after value               |
 | `onFinish`         | `function`| `console.log`| Callback when range is changed   |

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
@@ -14,13 +15,10 @@ export default defineConfig({
         '.js': 'jsx',
       },
     },
-<<<<<<< Updated upstream
-=======
   },
   resolve: {
     alias: {
       "react-range-slider-advanced": path.resolve(".."),
     }
->>>>>>> Stashed changes
   }
 })
