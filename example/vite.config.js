@@ -18,7 +18,6 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "react-range-slider-advanced/style.css": path.resolve("../dist/style.css"),
       "react-range-slider-advanced": path.resolve(".."),
     }
   }

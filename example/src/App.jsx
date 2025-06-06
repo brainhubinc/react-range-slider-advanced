@@ -4,6 +4,7 @@ import {
   SimpleRangeSlider,
 } from "react-range-slider-advanced";
 import "react-range-slider-advanced/style.css";
+
 function App() {
   const min = 0;
   const max = 10000;
@@ -17,10 +18,7 @@ function App() {
         to={max}
         step={10}
         numberOfSections={10}
-        separator=","
         prefix="P "
-        valuesSeparator="~"
-        postfix="k"
         onFinish={({ from, to }) => console.log("Selected range:", from, to)}
       />
       <SimpleRangeSlider

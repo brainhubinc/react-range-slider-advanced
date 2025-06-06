@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "esnext",            
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "lib": ["es2015", "dom", "dom.iterable"],
+    "declaration": true,
+    "declarationDir": "./types",
+    "esModuleInterop": true, 
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "stripInternal": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

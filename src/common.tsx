@@ -1,75 +1,93 @@
-import React from "react";
-export const prettify = (num, separator) => {
-  if (num === null || num === undefined) return "";
+import React, { RefObject, CSSProperties, ReactNode } from 'react';
+
+type ElementRef = RefObject<HTMLElement>;
+type GridItem = {
+  numberOfSections: number;
+  min: number;
+  max: number;
+  step: number;
+  separator: string;
+};
+type SliderProps = {
+  sliderRef:  React.RefObject<HTMLDivElement | null>;
+  handle: (e: React.MouseEvent | React.TouchEvent) => void;
+  classNames: string;
+};
+
+export const prettify = (num: number | null | undefined, separator: string): string => {
+  if (num === null || num === undefined) return '';
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 };
-export const convertToPercent = (value, min, max) =>
+
+export const convertToPercent = (value: number, min: number, max: number): number => 
   ((value - min) / (max - min)) * 100;
-export const convertToValue = (percent, min, max, step) => {
+
+export const convertToValue = (
+  percent: number,
+  min: number,
+  max: number,
+  step: number
+): number => {
   const value = min + ((max - min) * percent) / 100;
   const steppedValue = Math.round(value / step) * step;
   return Math.max(min, Math.min(steppedValue, max));
 };
-export const checkOverlap = (elem1, elem2) => {
+
+export const checkOverlap = (elem1: HTMLElement | null, elem2: HTMLElement | null): boolean => {
   if (!elem1 || !elem2) return false;
   const rect1 = elem1.getBoundingClientRect();
   const rect2 = elem2.getBoundingClientRect();
   return !(rect1.right < rect2.left || rect1.left > rect2.right);
 };
+
 export const updateElement = (
-  ref,
-  value,
-  left,
-  separator,
-  prefix,
-  postfix,
-  isVisible = true,
-) => {
+  ref: ElementRef,
+  value: number | null,
+  left: number,
+  separator: string,
+  prefix: string,
+  postfix: string,
+  isVisible: boolean = true
+): void => {
   if (ref.current) {
     ref.current.style.left = `${left}%`;
-    ref.current.style.transform = "translateX(-50%)";
+    ref.current.style.transform = 'translateX(-50%)';
     if (value !== null) {
       ref.current.textContent = prefix + prettify(value, separator) + postfix;
     }
     if (isVisible !== undefined) {
-      ref.current.style.visibility = isVisible ? "visible" : "hidden";
+      ref.current.style.visibility = isVisible ? 'visible' : 'hidden';
     }
   }
 };
 
-export const getGridItems = (
+export const getGridItems = ({
   numberOfSections,
   min,
   max,
   step,
   separator
-) => {
-  const items = [];
+}: GridItem): ReactNode[] => {
+  const items: ReactNode[] = [];
   const stepPercent = 100 / numberOfSections;
+  
   const numberOfSmallSections = (() => {
-    if (numberOfSections > 28) {
-      return 0;
-    }
-    if (numberOfSections > 14) {
-      return 1;
-    }
-    if (numberOfSections > 7) {
-      return 2;
-    }
-    if (numberOfSections > 4) {
-      return 3;
-    }
+    if (numberOfSections > 28) return 0;
+    if (numberOfSections > 14) return 1;
+    if (numberOfSections > 7) return 2;
+    if (numberOfSections > 4) return 3;
     return 4;
   })();
+
   for (let i = 0; i <= numberOfSections; i++) {
-    const elements = [];
+    const elements: ReactNode[] = [];
     const bigPercent = i * stepPercent;
 
     elements.push(
       <span
         key={`big-${i}`}
         className="irs-grid-pol"
-        style={{ left: `${bigPercent}%` }}
+        style={{ left: `${bigPercent}%` } as CSSProperties}
       />
     );
 
@@ -83,7 +101,7 @@ export const getGridItems = (
           <span
             key={`small-${i}-${j}`}
             className="irs-grid-pol small"
-            style={{ left: `${smallPercent}%` }}
+            style={{ left: `${smallPercent}%` } as CSSProperties}
           />
         );
       }
@@ -95,21 +113,23 @@ export const getGridItems = (
         <span
           key={`text-${i}`}
           className={`irs-grid-text js-grid-text-${i}`}
-          style={{ left: `${bigPercent}%`, transform: "translateX(-50%)" }}
+          style={{ 
+            left: `${bigPercent}%`, 
+            transform: 'translateX(-50%)' 
+          } as CSSProperties}
         >
           {prettify(value, separator)}
         </span>
       );
     }
 
-    items.push(
-      <React.Fragment key={`fragment-${i}`}>{elements}</React.Fragment>
-    );
+    items.push(<React.Fragment key={`fragment-${i}`}>{elements}</React.Fragment>);
   }
 
   return items;
 };
-export const Slider = ({ sliderRef, handle, classNames }) => {
+
+export const Slider: React.FC<SliderProps> = ({ sliderRef, handle, classNames }) => {
   return (
     <div className={classNames}>
       <div

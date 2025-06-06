@@ -9,7 +9,19 @@ import {
   updateElement,
 } from "./common";
 
-const SimpleRangeSlider = ({
+interface SimpleRangeSliderProps {
+  min?: number;
+  max?: number;
+  value?: number;
+  step?: number;
+  numberOfSections?: number;
+  separator?: string;
+  prefix?: string;
+  postfix?: string;
+  onFinish?: (currentValue: number) => void;
+}
+
+const SimpleRangeSlider: React.FC<SimpleRangeSliderProps> = ({
   min = 0,
   max = 100,
   value = 10,
@@ -20,44 +32,54 @@ const SimpleRangeSlider = ({
   postfix = "",
   onFinish = (currentValue) => console.log(currentValue),
 }) => {
-  const [currentValue, setCurrentValue] = React.useState(Number(value));
-  const [showDefaultFromValue, setShowDefaultFromValue] = React.useState(false);
-  const [showDefaultToValue, setShowDefaultToValue] = React.useState(false);
+  const [currentValue, setCurrentValue] = React.useState<number>(Number(value));
+  const [showDefaultFromValue, setShowDefaultFromValue] = React.useState<boolean>(false);
+  const [showDefaultToValue, setShowDefaultToValue] = React.useState<boolean>(false);
 
-  const sliderContainerRef = React.useRef(null);
-  const sliderRef = React.useRef(null);
-  const barRef = React.useRef(null);
-  const valueRef = React.useRef(null);
-  const hiddenInputRef = React.useRef(null);
-  const toDefaultRef = React.useRef(null);
-  const fromDefaultRef = React.useRef(null);
-  const isDraggingRef = React.useRef(false);
-  const startXRef = React.useRef(0);
-  const startLeftRef = React.useRef(0);
+  const sliderContainerRef = React.useRef<HTMLDivElement>(null);
+  const sliderRef = React.useRef<HTMLDivElement>(null);
+  const barRef = React.useRef<HTMLSpanElement>(null);
+  const valueRef = React.useRef<HTMLSpanElement>(null);
+  const hiddenInputRef = React.useRef<HTMLInputElement>(null);
+  const toDefaultRef = React.useRef<HTMLSpanElement>(null);
+  const fromDefaultRef = React.useRef<HTMLSpanElement>(null);
+  const isDraggingRef = React.useRef<boolean>(false);
+  const startXRef = React.useRef<number>(0);
+  const startLeftRef = React.useRef<number>(0);
 
-  const prettifyCall = React.useCallback((num) => prettify(num, separator), []);
+  const prettifyCall = React.useCallback(
+    (num: number) => prettify(num, separator),
+    [separator]
+  );
 
   const convertToPercentCall = React.useCallback(
-    (value) => convertToPercent(value, min, max),
+    (value: number) => convertToPercent(value, min, max),
     [min, max]
   );
 
   const convertToValueCall = React.useCallback(
-    (percent) => convertToValue(percent, min, max, step),
+    (percent: number) => convertToValue(percent, min, max, step),
     [min, max, step]
   );
 
   const checkOverlapCall = React.useCallback(
-    (elem1, elem2) => checkOverlap(elem1, elem2),
+    (elem1: HTMLElement | null, elem2: HTMLElement | null) => checkOverlap(elem1, elem2),
     []
   );
 
   const updateSliderValues = React.useCallback(() => {
     const currentPercent = convertToPercentCall(currentValue);
 
-    updateElement(sliderRef, null, currentPercent, separator, prefix, postfix);
     updateElement(
-      valueRef,
+      sliderRef as React.RefObject<HTMLElement>,
+      null,
+      currentPercent,
+      separator,
+      prefix,
+      postfix
+    );
+    updateElement(
+      valueRef as React.RefObject<HTMLElement>,
       currentValue,
       currentPercent,
       separator,
@@ -80,25 +102,27 @@ const SimpleRangeSlider = ({
     setShowDefaultToValue(
       checkOverlapCall(valueRef.current, toDefaultRef.current)
     );
-  }, [currentValue, convertToPercentCall, checkOverlapCall, prettifyCall]);
+  }, [currentValue, convertToPercentCall, checkOverlapCall, separator, prefix, postfix]);
 
-  const handleStart = React.useCallback((e) => {
+  const handleStart = React.useCallback((e: React.MouseEvent | React.TouchEvent) => {
     if (e.cancelable) e.preventDefault();
     isDraggingRef.current = true;
 
-    const clientX = e.clientX || e.touches[0].clientX;
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
     startXRef.current = clientX;
 
     const slider = sliderRef.current;
-    startLeftRef.current = parseFloat(slider.style.left) || 0;
+    if (slider) {
+      startLeftRef.current = parseFloat(slider.style.left) || 0;
+    }
   }, []);
 
   const handleMove = React.useCallback(
-    (e) => {
+    (e: MouseEvent | TouchEvent) => {
       if (!isDraggingRef.current || !sliderContainerRef.current) return;
       if (e.cancelable) e.preventDefault();
 
-      const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
       if (clientX === undefined) return;
 
       const containerRect = sliderContainerRef.current.getBoundingClientRect();
@@ -122,7 +146,7 @@ const SimpleRangeSlider = ({
   }, [currentValue, onFinish]);
 
   React.useEffect(() => {
-    const handleMoveWrapper = (e) => {
+    const handleMoveWrapper = (e: MouseEvent | TouchEvent) => {
       if (isDraggingRef.current) {
         handleMove(e);
       }
@@ -158,15 +182,15 @@ const SimpleRangeSlider = ({
   }, [currentValue, updateSliderValues]);
 
   const getGridItemsCall = React.useCallback(
-    () => getGridItems(numberOfSections, min, max, step, separator),
-    [numberOfSections, convertToValueCall, prettifyCall]
+    () => getGridItems({numberOfSections, min, max, step, separator}),
+    [numberOfSections, min, max, step, separator]
   );
 
   return (
     <div className="range-slider-container">
       <span className="irs js-irs-3 irs-with-grid" ref={sliderContainerRef}>
         <span className="irs">
-          <span className="irs-line" tabIndex="-1">
+          <span className="irs-line" tabIndex={-1}>
             <span className="irs-line-left"></span>
             <span className="irs-line-mid"></span>
             <span className="irs-line-right"></span>
