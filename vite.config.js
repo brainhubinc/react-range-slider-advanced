@@ -1,11 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react() ],
   build: {
     lib: {
-      entry: 'src/index.jsx',
+      entry: './src/index.tsx',
       name: 'ReactRangeSlider',
       fileName: (format) => `index.${format}.js`
     },
