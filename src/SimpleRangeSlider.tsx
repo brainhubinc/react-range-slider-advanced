@@ -21,7 +21,7 @@ interface SimpleRangeSliderProps {
   onFinish?: (currentValue: number) => void;
 }
 
-const SimpleRangeSlider: React.FC<SimpleRangeSliderProps> = ({
+const SimpleRangeSlider = ({
   min = 0,
   max = 100,
   value = 10,
@@ -30,11 +30,13 @@ const SimpleRangeSlider: React.FC<SimpleRangeSliderProps> = ({
   separator = " ",
   prefix = "",
   postfix = "",
-  onFinish = (currentValue) => console.log(currentValue),
-}) => {
+  onFinish = () => {},
+}: SimpleRangeSliderProps) => {
   const [currentValue, setCurrentValue] = React.useState<number>(Number(value));
-  const [showDefaultFromValue, setShowDefaultFromValue] = React.useState<boolean>(false);
-  const [showDefaultToValue, setShowDefaultToValue] = React.useState<boolean>(false);
+  const [showDefaultFromValue, setShowDefaultFromValue] =
+    React.useState<boolean>(false);
+  const [showDefaultToValue, setShowDefaultToValue] =
+    React.useState<boolean>(false);
 
   const sliderContainerRef = React.useRef<HTMLDivElement>(null);
   const sliderRef = React.useRef<HTMLDivElement>(null);
@@ -63,7 +65,8 @@ const SimpleRangeSlider: React.FC<SimpleRangeSliderProps> = ({
   );
 
   const checkOverlapCall = React.useCallback(
-    (elem1: HTMLElement | null, elem2: HTMLElement | null) => checkOverlap(elem1, elem2),
+    (elem1: HTMLElement | null, elem2: HTMLElement | null) =>
+      checkOverlap(elem1, elem2),
     []
   );
 
@@ -102,27 +105,37 @@ const SimpleRangeSlider: React.FC<SimpleRangeSliderProps> = ({
     setShowDefaultToValue(
       checkOverlapCall(valueRef.current, toDefaultRef.current)
     );
-  }, [currentValue, convertToPercentCall, checkOverlapCall, separator, prefix, postfix]);
+  }, [
+    currentValue,
+    convertToPercentCall,
+    checkOverlapCall,
+    separator,
+    prefix,
+    postfix,
+  ]);
 
-  const handleStart = React.useCallback((e: React.MouseEvent | React.TouchEvent) => {
-    if (e.cancelable) e.preventDefault();
-    isDraggingRef.current = true;
+  const handleStart = React.useCallback(
+    (e: React.MouseEvent | React.TouchEvent) => {
+      if (e.cancelable) e.preventDefault();
+      isDraggingRef.current = true;
 
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    startXRef.current = clientX;
+      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+      startXRef.current = clientX;
 
-    const slider = sliderRef.current;
-    if (slider) {
-      startLeftRef.current = parseFloat(slider.style.left) || 0;
-    }
-  }, []);
+      const slider = sliderRef.current;
+      if (slider) {
+        startLeftRef.current = parseFloat(slider.style.left) || 0;
+      }
+    },
+    []
+  );
 
   const handleMove = React.useCallback(
     (e: MouseEvent | TouchEvent) => {
       if (!isDraggingRef.current || !sliderContainerRef.current) return;
       if (e.cancelable) e.preventDefault();
 
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
       if (clientX === undefined) return;
 
       const containerRect = sliderContainerRef.current.getBoundingClientRect();
@@ -182,7 +195,7 @@ const SimpleRangeSlider: React.FC<SimpleRangeSliderProps> = ({
   }, [currentValue, updateSliderValues]);
 
   const getGridItemsCall = React.useCallback(
-    () => getGridItems({numberOfSections, min, max, step, separator}),
+    () => getGridItems({ numberOfSections, min, max, step, separator }),
     [numberOfSections, min, max, step, separator]
   );
 

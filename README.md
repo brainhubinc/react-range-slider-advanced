@@ -80,7 +80,7 @@ export default App;
 | `separator`        | `string`  | ` `          | Numbers separator                |
 | `prefix`           | `string`  | ``           | Symbol before value              |
 | `postfix`          | `string`  | ``           | Symbol after value               |
-| `onFinish`         | `function`| `console.log`| Callback when range is changed   |
+| `onFinish`         | `function`| ``           | Callback when range is changed   |
 
 ### DoubleRangeSlider 🎚️🎚️
 |      Argument      |    Type   |  Default     |           Description            |
@@ -95,4 +95,4 @@ export default App;
 | `valuesSeparator`  | `string`  | `-`          | Separator between values         |
 | `prefix`           | `string`  | ``           | Symbol before value              |
 | `postfix`          | `string`  | ``           | Symbol after value               |
-| `onFinish`         | `function`| `console.log`| Callback when range is changed   |
+| `onFinish`         | `function`| ``           | Callback when range is changed   |
