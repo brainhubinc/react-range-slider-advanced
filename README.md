@@ -1,8 +1,8 @@
 # React Range Slider Advanced 🎚️
 
-![npm](https://img.shields.io/npm/v/react-range-slider-advanced)
-![license](https://img.shields.io/npm/l/react-range-slider-advanced)
-![downloads](https://img.shields.io/npm/dm/react-range-slider-advanced)
+[![npm](https://img.shields.io/npm/v/react-range-slider-advanced)](https://www.npmjs.com/package/react-range-slider-advanced)
+[![license](https://img.shields.io/npm/l/react-range-slider-advanced)](https://www.npmjs.com/package/react-range-slider-advanced)
+[![downloads](https://img.shields.io/npm/dt/react-range-slider-advanced)](https://www.npmjs.com/package/react-range-slider-advanced)
 
 A modern, customizable, and interactive Range Slider component for React applications with support for multi-range selection, value grids, and adaptive UI.
 
