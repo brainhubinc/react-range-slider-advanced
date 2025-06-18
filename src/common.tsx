@@ -86,7 +86,7 @@ export const getGridItems = ({
     elements.push(
       <span
         key={`big-${i}`}
-        className="irs-grid-pol"
+        className="rrsa-grid-pol"
         style={{ left: `${bigPercent}%` } as CSSProperties}
       />
     );
@@ -100,7 +100,7 @@ export const getGridItems = ({
         elements.push(
           <span
             key={`small-${i}-${j}`}
-            className="irs-grid-pol small"
+            className="rrsa-grid-pol small"
             style={{ left: `${smallPercent}%` } as CSSProperties}
           />
         );
@@ -112,7 +112,7 @@ export const getGridItems = ({
       elements.push(
         <span
           key={`text-${i}`}
-          className={`irs-grid-text js-grid-text-${i}`}
+          className={`rrsa-grid-text js-grid-text-${i}`}
           style={{ 
             left: `${bigPercent}%`, 
             transform: 'translateX(-50%)' 
@@ -134,15 +134,15 @@ export const Slider: React.FC<SliderProps> = ({ sliderRef, handle, classNames })
     <div className={classNames}>
       <div
         ref={sliderRef}
-        className="slider-container"
+        className="rrsa-container"
         onMouseDown={handle}
         onTouchStart={handle}
       >
-        <span className="slider-pointer" />
-        <span className="slider-handle" />
-        <div className="slider-lines-container">
-          <span className="slider-left-line" />
-          <span className="slider-right-line" />
+        <span className="rrsa-pointer" />
+        <span className="rrsa-handle" />
+        <div className="rrsa-lines-container">
+          <span className="rrsa-left-line" />
+          <span className="rrsa-right-line" />
         </div>
       </div>
     </div>

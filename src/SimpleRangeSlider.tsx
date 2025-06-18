@@ -201,39 +201,39 @@ const SimpleRangeSlider = ({
 
   return (
     <div className="range-slider-container">
-      <span className="irs js-irs-3 irs-with-grid" ref={sliderContainerRef}>
-        <span className="irs">
-          <span className="irs-line" tabIndex={-1}>
-            <span className="irs-line-left"></span>
-            <span className="irs-line-mid"></span>
-            <span className="irs-line-right"></span>
+      <span className="rrsa js-rrsa-3 rrsa-with-grid" ref={sliderContainerRef}>
+        <span className="rrsa">
+          <span className="rrsa-line" tabIndex={-1}>
+            <span className="rrsa-line-left"></span>
+            <span className="rrsa-line-mid"></span>
+            <span className="rrsa-line-right"></span>
           </span>
           <span
-            className="irs-min"
+            className="rrsa-min"
             ref={fromDefaultRef}
             style={{ visibility: showDefaultFromValue ? "hidden" : "visible" }}
           >
             {prefix + prettifyCall(min) + postfix}
           </span>
           <span
-            className="irs-max"
+            className="rrsa-max"
             ref={toDefaultRef}
             style={{ visibility: showDefaultToValue ? "hidden" : "visible" }}
           >
             {prefix + prettifyCall(max) + postfix}
           </span>
-          <span className="irs-to" ref={valueRef} />
+          <span className="rrsa-to" ref={valueRef} />
         </span>
-        <span className="irs-grid">{getGridItemsCall()}</span>
-        <span className="irs-bar" ref={barRef} />
-        <span className="irs-shadow shadow-from" />
-        <span className="irs-shadow shadow-to" />
+        <span className="rrsa-grid">{getGridItemsCall()}</span>
+        <span className="rrsa-bar" ref={barRef} />
+        <span className="rrsa-shadow shadow-from" />
+        <span className="rrsa-shadow shadow-to" />
         <Slider sliderRef={sliderRef} handle={handleStart} classNames={"to"} />
       </span>
       <input
         type="text"
         readOnly
-        className="irs-hidden-input"
+        className="rrsa-hidden-input"
         ref={hiddenInputRef}
       />
     </div>
