@@ -4,7 +4,7 @@ export default defineConfig({
   plugins: [react() ],
   build: {
     lib: {
-      entry: './dist/index.js',
+      entry: './src/index.tsx',
       name: 'ReactRangeSlider',
       fileName: (format) => `index.${format}.js`
     },
