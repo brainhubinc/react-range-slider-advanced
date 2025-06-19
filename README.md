@@ -15,6 +15,8 @@ A modern, customizable, and interactive Range Slider component for React applica
 - Smooth drag animation
 - Mobile-optimized
 
+<p><img src="https://github.com/user-attachments/assets/6cc286b9-02e7-4f3a-b1ee-ccb37233705b" width="800"></p>
+
 ## 📦 Installation
 
 ```bash
