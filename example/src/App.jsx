@@ -9,7 +9,12 @@ function App() {
   const min = 0;
   const max = 10000;
   return (
-    <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
+    <div style={{
+        padding: "20px",
+        maxWidth: "800px",
+        margin: "0 auto",
+        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont,\"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif"
+    }}>
       <h1>React Range Slider Example</h1>
       <DoubleRangeSlider
         min={min}
