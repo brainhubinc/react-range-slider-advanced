@@ -1,6 +1,6 @@
 {
   "name": "react-range-slider-advanced",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An advanced range slider component for React",
   "main": "dist/index.umd.js",
   "types": "./types/index.d.ts",
